@@ -10,7 +10,7 @@ export class BillPayPage {
     this.page = page;
   }
 
-  async payBill(accountNumber) {
+  async payBill(accountNumber, amount) {
     await this.page.waitForLoadState('networkidle');
     await expect(this.page.locator('[name="payee.name"]')).toBeVisible();
     await this.page.fill('[name="payee.name"]', 'Electricity Board');
@@ -22,7 +22,7 @@ export class BillPayPage {
     const payeeAccount = '12345678';
     await this.page.fill('[name="payee.accountNumber"]', payeeAccount);
     await this.page.fill('[name="verifyAccount"]', payeeAccount);
-    await this.page.fill('[name="amount"]', '100');
+    await this.page.fill('[name="amount"]', amount);
     await this.page.selectOption('[name="fromAccountId"]', accountNumber);
     await this.page.click('input.button[value="Send Payment"]');
     await expect(this.page.locator('#rightPanel')).toContainText('Bill Payment Complete');

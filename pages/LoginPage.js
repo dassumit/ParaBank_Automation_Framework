@@ -4,10 +4,14 @@ export class LoginPage {
 
   /**
    * @param {import('@playwright/test').Page} page
+   * @param {import('@playwright/test').BrowserContext} context
    **/
+
+
   
-  constructor(page) {
+  constructor(page, context) {
     this.page = page;
+    this.context = context;
   }
 
   async login(username, password) {
@@ -33,5 +37,20 @@ export class LoginPage {
     await expect(balanceCell).toContainText('$');
     await expect(this.page.locator('#accountTable td b', { hasText: 'Total' })).toBeVisible();
   }
+
+  /**
+   * Fetch the session cookie
+   */
+  async fetchJSessionId() {
+    const cookies = await this.page.context().cookies();
+    const jsessionCookie = cookies.find(cookie => cookie.name === 'JSESSIONID');
+    if (!jsessionCookie) {
+      throw new Error("JSESSIONID cookie not found");
+    }  
+    console.log('JSESSIONID value:', jsessionCookie.value);
+    return jsessionCookie.value;
+  }
+  
+
   
 }
