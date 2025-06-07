@@ -3,7 +3,6 @@ import { expect } from '@playwright/test';
 export class HomePage {
   constructor(page) {
     this.page = page;
-
     this.navLinks = {
       accountsOverview: page.locator('a[href="overview.htm"]'),
       openNewAccount: page.locator('a[href="openaccount.htm"]'),
@@ -13,6 +12,13 @@ export class HomePage {
       updateContactInfo: page.locator('a[href="updateprofile.htm"]'),
       logout: page.locator('a[href="logout.htm"]'),
     };
+
+     this.newAccountOpenLink = this.page.locator('text=Open New Account');
+     this.accountsOverviewLink = this.page.locator('text=Accounts Overview');
+     this.transferFundsLink = this.page.locator('text=Transfer Funds');
+     this.billPayLink = this.page.locator('text=Bill Pay');
+
+
 
   }
 
@@ -37,5 +43,21 @@ export class HomePage {
       this.page.waitForNavigation({ waitUntil: 'networkidle' }),
       navLink.click(),
     ]);
+  }
+
+  async navigateToOpenAccount() {
+    await this.newAccountOpenLink.click();
+  }
+
+  async navigateToAccountsOverview() {
+    await this.accountsOverviewLink.click();
+  }
+
+  async navigateToTransferFunds() {
+    await this.transferFundsLink.click();
+  }
+
+  async navigateToBillPay() {
+    await this.billPayLink.click();
   }
 }

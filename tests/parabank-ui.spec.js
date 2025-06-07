@@ -50,14 +50,13 @@ test.describe('ParaBank End-to-End UI Test Suite', () => {
       await home.navigateAndValidate('updateContactInfo', 'Update Profile');
     });
 
-    // await test.step('Open a new savings account', async () => {
-    //   await home.navigateToOpenAccount();
-    // });
+    await test.step('5: Create a Savings account from “Open New Account Page” and capture the account number', async () => {
+      await home.navigateToOpenAccount();
+      accountNumber = await account.openSavingsAccount();
+      await home.navigateToAccountsOverview();
+      await account.verifyAccountInOverview(accountNumber);
+    });
 
-    
-    // await test.step('Create a new savings account and capture the account number', async () => {
-    //   accountNumber = await account.openSavingsAccount();
-    // });
 
     // await test.step('Validate account is listed in accounts overview', async () => {
     //   await home.navigateToAccountsOverview();
