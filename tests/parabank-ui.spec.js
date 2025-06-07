@@ -50,21 +50,26 @@ test.describe('ParaBank End-to-End UI Test Suite', () => {
       await home.navigateAndValidate('updateContactInfo', 'Update Profile');
     });
 
-    await test.step('5-6: Create a Savings account from “Open New Account Page” and capture the account number || Validate if Accounts overview page is displaying the balance details as expected', async () => {
+    await test.step('5: Create a Savings account from “Open New Account Page” and capture the account number', async () => {
       await home.navigateToOpenAccount();
       accountNumber = await account.openSavingsAccount();
+      console.log('Account Number captured in test:', accountNumber);
       await home.navigateToAccountsOverview();
       await account.verifyAccountInOverview(accountNumber);
     });
 
-    // await test.step('Transfer funds using the new account', async () => {
-    //   await home.navigateToTransferFunds();
-    //   await transfer.transferFunds(accountNumber);
-    // });
+    await test.step('6: Validate if Accounts overview page is displaying the balance details as expected', async () => {
+      await account.verifyAccountInOverview(accountNumber);
+    });
 
-    // await test.step('Pay a bill using the new account', async () => {
-    //   await home.navigateToBillPay();
-    //   await bill.payBill(accountNumber);
-    // });
+    await test.step('7: Transfer funds from account created in step 5 to another account', async () => {
+      await home.navigateToTransferFunds();
+      await transfer.transferFunds(accountNumber);
+    });
+
+    await test.step('8: Pay the bill with account created in step 5', async () => {
+      await home.navigateToBillPay();
+      await bill.payBill(accountNumber);
+    });
   });
 });

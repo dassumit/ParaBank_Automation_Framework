@@ -1,19 +1,29 @@
+
+
 import { expect } from '@playwright/test';
 
 export class OpenAccountPage {
+  /**
+   * @param {import('@playwright/test').Page} page
+   **/
+
   constructor(page) {
     this.page = page;
   }
 
   async openSavingsAccount() {
+    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForSelector('select#type',{state: 'visible'});
     await this.page.selectOption('select#type', '1');
+    await this.page.waitForSelector('input[value="Open New Account"]',{state:'visible'});
     await this.page.click('input[value="Open New Account"]');
+    await this.page.waitForSelector('#newAccountId',{state:'visible'});
     const accountNumber = await this.page.locator('#newAccountId').textContent();
-    console.log('Created account number is: ' + accountNumber)
     return accountNumber.trim();
   }
 
   async verifyAccountInOverview(accountNumber) {
+    await this.page.waitForLoadState('networkidle');
     console.log('Received account number:', accountNumber);
     if (!accountNumber || typeof accountNumber !== 'string') {
       throw new Error('A valid account number must be provided.');
