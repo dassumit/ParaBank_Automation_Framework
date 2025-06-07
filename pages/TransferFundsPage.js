@@ -1,6 +1,11 @@
 import { expect } from '@playwright/test';
 
 export class TransferFundsPage {
+
+  /**
+   * @param {import('@playwright/test').Page} page
+   **/
+  
   constructor(page) {
     this.page = page;
   }

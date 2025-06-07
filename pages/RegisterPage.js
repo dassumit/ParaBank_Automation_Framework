@@ -2,6 +2,11 @@ import { expect } from '@playwright/test';
 
 
 export class RegisterPage {
+
+  /**
+   * @param {import('@playwright/test').Page} page
+   **/
+  
   constructor(page) {
     this.page = page;
   }
@@ -40,13 +45,20 @@ export class RegisterPage {
   }
   
 
+  async validateUserName(userName) {
+    const welcomeMessage = await this.page.textContent('h1.title');
+    expect(welcomeMessage).toContain('Welcome');
+    expect(welcomeMessage).toContain(userName);
+  }
+
   async verifySuccess() {
-    await expect(this.page.locator('p:has-text("Your account was created successfully")')).toBeVisible();
+    await expect.soft(this.page.locator('p:has-text("Your account was created successfully")')).toBeVisible();
   }
   
   async logout() {
     await this.page.click('a[href="logout.htm"]');
-    this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('networkidle');
   }
+  
   
 }
