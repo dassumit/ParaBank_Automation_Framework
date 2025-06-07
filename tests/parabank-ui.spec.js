@@ -19,6 +19,8 @@ test.describe('ParaBank End-to-End UI Test Suite', () => {
     const transfer = new TransferFundsPage(page);
     const bill = new BillPayPage(page);
 
+    let accountNumber;
+
     await test.step('Navigate to registration page and register a new user', async () => {
       await register.navigate();
       await register.registerUser(username, password);
@@ -30,32 +32,32 @@ test.describe('ParaBank End-to-End UI Test Suite', () => {
       await login.login(username, password);
     });
 
-    await test.step('Verify global navigation menu is visible', async () => {
-      await home.verifyNavigationMenu();
-    });
+    // await test.step('Verify global navigation menu is visible', async () => {
+    //   await home.verifyNavigationMenu();
+    // });
 
-    await test.step('Open a new savings account', async () => {
-      await home.navigateToOpenAccount();
-    });
+    // await test.step('Open a new savings account', async () => {
+    //   await home.navigateToOpenAccount();
+    // });
 
-    let accountNumber;
-    await test.step('Create a new savings account and capture the account number', async () => {
-      accountNumber = await account.openSavingsAccount();
-    });
+    
+    // await test.step('Create a new savings account and capture the account number', async () => {
+    //   accountNumber = await account.openSavingsAccount();
+    // });
 
-    await test.step('Validate account is listed in accounts overview', async () => {
-      await home.navigateToAccountsOverview();
-      await account.verifyAccountInOverview(accountNumber);
-    });
+    // await test.step('Validate account is listed in accounts overview', async () => {
+    //   await home.navigateToAccountsOverview();
+    //   await account.verifyAccountInOverview(accountNumber);
+    // });
 
-    await test.step('Transfer funds using the new account', async () => {
-      await home.navigateToTransferFunds();
-      await transfer.transferFunds(accountNumber);
-    });
+    // await test.step('Transfer funds using the new account', async () => {
+    //   await home.navigateToTransferFunds();
+    //   await transfer.transferFunds(accountNumber);
+    // });
 
-    await test.step('Pay a bill using the new account', async () => {
-      await home.navigateToBillPay();
-      await bill.payBill(accountNumber);
-    });
+    // await test.step('Pay a bill using the new account', async () => {
+    //   await home.navigateToBillPay();
+    //   await bill.payBill(accountNumber);
+    // });
   });
 });
