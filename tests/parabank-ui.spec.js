@@ -40,9 +40,15 @@ test.describe('ParaBank End-to-End UI Test Suite', () => {
       await login.validateAccountSummary();
     });
 
-    // await test.step('Verify global navigation menu is visible', async () => {
-    //   await home.verifyNavigationMenu();
-    // });
+    await test.step('4: Verify if the Global navigation menu in home page is working as expected', async () => {
+      await home.validatePageTitle('Account Services');
+      await home.navigateAndValidate('accountsOverview', 'Accounts Overview');
+      await home.navigateAndValidate('openNewAccount', 'Open New Account');
+      await home.navigateAndValidate('transferFunds', 'Transfer Funds');
+      await home.navigateAndValidate('billPay', 'Bill Payment Service');
+      await home.navigateAndValidate('findTransactions', 'Find Transactions');
+      await home.navigateAndValidate('updateContactInfo', 'Update Profile');
+    });
 
     // await test.step('Open a new savings account', async () => {
     //   await home.navigateToOpenAccount();
