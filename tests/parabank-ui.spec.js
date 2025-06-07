@@ -21,17 +21,24 @@ test.describe('ParaBank End-to-End UI Test Suite', () => {
 
     let accountNumber;
 
-    await test.step('Navigate to registration page and register a new user', async () => {
+    await test.step('1: Navigate to Para bank application', async () => {
       await register.navigate();
+    });
+
+    await test.step('2: Create a new user from user registration page', async () => {
       await register.registerUser(username, password);
       await register.validateUserName(username);
       await register.verifySuccess();
       await register.logout();
     });
 
-    // await test.step('Login with the newly registered user', async () => {
-    //   await login.login(username, password);
-    // });
+    await test.step('3: Login to the application with the user created in step 2', async () => {
+      await login.login(username, password);
+    });
+
+    await test.step('3A: After login validate account overview should displayed', async () => {
+      await login.validateAccountSummary();
+    });
 
     // await test.step('Verify global navigation menu is visible', async () => {
     //   await home.verifyNavigationMenu();
