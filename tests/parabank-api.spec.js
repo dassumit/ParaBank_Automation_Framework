@@ -1,4 +1,4 @@
-const { test, request, expect } = require('@playwright/test');
+import { test, request, expect } from '@playwright/test';
 
 test('Find transaction by amount using API', async () => {
   const context = await request.newContext();
