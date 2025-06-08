@@ -45,18 +45,30 @@ export class HomePage {
     ]);
   }
 
+  /**
+   * Nevigate to open account page
+   */
   async navigateToOpenAccount() {
     await this.newAccountOpenLink.click();
   }
 
+  /**
+   * Nevigate to open account overview page
+   */
   async navigateToAccountsOverview() {
     await this.accountsOverviewLink.click();
   }
 
+  /**
+   * Nevigate to transfer funds page
+   */
   async navigateToTransferFunds() {
     await this.transferFundsLink.click();
   }
 
+  /**
+   * Nevigate to bill payment page
+   */
   async navigateToBillPay() {
     await this.billPayLink.click();
   }

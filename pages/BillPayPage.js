@@ -10,6 +10,12 @@ export class BillPayPage {
     this.page = page;
   }
 
+
+  /**
+   * Bill payment function
+   * @param {accountNumber} accountNumber 
+   * @param {amount} amount 
+   */
   async payBill(accountNumber, amount) {
     await this.page.waitForLoadState('networkidle');
     await expect(this.page.locator('[name="payee.name"]')).toBeVisible();
