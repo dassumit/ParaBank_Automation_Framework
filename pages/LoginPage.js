@@ -14,6 +14,11 @@ export class LoginPage {
     this.context = context;
   }
 
+  /**
+   * Login with dynamic username and password
+   * @param {username} username for login 
+   * @param {password} password for login
+   */
   async login(username, password) {
     await this.page.goto('https://parabank.parasoft.com/parabank/index.html');
     await this.page.fill('input[name="username"]', username);

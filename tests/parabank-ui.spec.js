@@ -8,8 +8,8 @@ import { TransferFundsPage } from '../pages/TransferFundsPage';
 import { BillPayPage } from '../pages/BillPayPage';
 import { transactionByAmount } from '../utils/findTransactionAPI';
 
-test.describe('ParaBank End-to-End UI Test Suite', () => {
-  test('ParaBank End-to-End UI Test', async ({ page }) => {
+test.describe('ParaBank End-to-End Test Suite', () => {
+  test('ParaBank End-to-End Test', async ({ page }) => {
     const username = generateUniqueUsername();
     const password = 'Test@123';
     const amount = generateAmount();

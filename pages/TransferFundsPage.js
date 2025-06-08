@@ -10,6 +10,10 @@ export class TransferFundsPage {
     this.page = page;
   }
 
+  /**
+   * Fund transfer to another account
+   * @param {fromAccount} fromAccount 
+   */
   async transferFunds(fromAccount) {
     await this.page.fill('#amount', '100');
     await this.page.selectOption('#fromAccountId', fromAccount);

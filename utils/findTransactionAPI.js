@@ -1,6 +1,11 @@
 import { request, expect } from '@playwright/test';
 
-
+/**
+ * Get transaction history by amount
+ * @param {accountNumber} accountNumber 
+ * @param {amount} amount 
+ * @param {jsessionID} jsessionID 
+ */
 export async function transactionByAmount(accountNumber, amount, jsessionID){
         const context = await request.newContext({
           extraHTTPHeaders: {

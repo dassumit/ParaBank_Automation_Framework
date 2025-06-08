@@ -11,6 +11,10 @@ export class OpenAccountPage {
     this.page = page;
   }
 
+  /**
+   * Creating new savings account
+   * @returns accountNumber
+   */
   async openSavingsAccount() {
     await this.page.waitForLoadState('networkidle');
     await this.page.waitForSelector('select#type',{state: 'visible'});
@@ -22,6 +26,10 @@ export class OpenAccountPage {
     return accountNumber.trim();
   }
 
+  /**
+   * Verify the account over view page after creating new savings account
+   * @param {accountNumber} accountNumber 
+   */
   async verifyAccountInOverview(accountNumber) {
     await this.page.waitForLoadState('networkidle');
     console.log('Received account number:', accountNumber);
