@@ -34,17 +34,19 @@ export class HomePage {
   /**
    * Navigate to a specific menu item and verify destination page
    */
-  async navigateAndValidate(menuKey, expectedTitle) {
-    const navLink = this.navLinks[menuKey];
-    if (!navLink) {
-      throw new Error(`Navigation key '${menuKey}' is not defined.`);
-    }
-    await Promise.all([
-      this.page.waitForNavigation({ waitUntil: 'networkidle' }),
-      navLink.click(),
-    ]);
-    await expect(this.page.locator('h1, h2, h3')).toContainText(expectedTitle);
+async navigateAndValidate(menuKey, expectedTitle) {
+  const navLink = this.navLinks[menuKey];
+  if (!navLink) {
+    throw new Error(`Navigation key '${menuKey}' is not defined.`);
   }
+  await Promise.all([
+    this.page.waitForNavigation({ waitUntil: 'networkidle' }),
+    navLink.click(),
+  ]);
+  const heading = this.page.getByRole('heading', { name: expectedTitle, exact: false });
+  await expect(heading).toBeVisible();
+}
+
   
 
   /**
