@@ -43,7 +43,9 @@ export class HomePage {
       this.page.waitForNavigation({ waitUntil: 'networkidle' }),
       navLink.click(),
     ]);
+    await expect(this.page.locator('h1, h2, h3')).toContainText(expectedTitle);
   }
+  
 
   /**
    * Nevigate to open account page
